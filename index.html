@@ -35,31 +35,31 @@
         <legend>Your Details</legend>
         <div>
             <label for="firstname">First name *</label>
-            <input type="text" name="firstname" id="firstname" value="" required placeholder="John" />
+            <input type="text" name="firstname" id="firstname" value="" required aria-required="true" placeholder="John" />
         </div>
         <div>
             <label for="surname">Surname *</label>
-            <input type="text" name="surname" id="surname" value="" required placeholder="Smith" />
+            <input type="text" name="surname" id="surname" value="" required aria-required="true" placeholder="Smith" />
         </div>
         <div>
             <label for="email">Email address *</label>
-            <input type="email" name="email" id="email" value="" required placeholder="johnsmith@nsa.gov.us" />
+            <input type="email" name="email" id="email" value="" required aria-required="true" placeholder="johnsmith@nsa.gov.us" />
         </div>
         <div>
             <label for="phone">Daytime contact number *</label>
-            <input type="tel" name="phone" id="phone" value="" required placeholder="(02) 3456 7890" />
+            <input type="tel" name="phone" id="phone" value="" required aria-required="true" placeholder="(02) 3456 7890" />
         </div>
         <div>
             <label for="address">Address *</label>
-            <input type="text" name="address" id="address" value="" required placeholder="66 Acacia Avenue" />
+            <input type="text" name="address" id="address" value="" required aria-required="true" placeholder="66 Acacia Avenue" />
         </div>
         <div>
             <label for="suburb">Suburb *</label>
-            <input type="text" name="suburb" id="suburb" value="" required placeholder="Suburbabad" />
+            <input type="text" name="suburb" id="suburb" value="" required aria-required="true" placeholder="Suburbabad" />
         </div>
         <div>
             <label for="state">State *</label>
-            <select id="state" name="state" required>
+            <select id="state" name="state" required aria-required="true">
                 <option value="">choose</option>
                 <option value="ACT">ACT</option>
                 <option value="NSW">NSW</option>
@@ -73,41 +73,44 @@
         </div>
         <div>
             <label for="postcode">Postcode *</label>
-            <input type="text" required name="postcode" id="postcode" pattern="\d{4}" />
+            <input type="text" required aria-required="true" name="postcode" id="postcode" pattern="\d{4}" />
         </div>
         <div>
             <label for="enquiryType">Enquiry type *</label>
-            <select name="enquiryType" id="enquiryType" required>
+            <select name="enquiryType" id="enquiryType" required aria-required="true">
                 <option value="">choose</option>
                 <option value="General enquiry">General enquiry</option>
                 <option value="Product feedback or enquiry">Product feedback or enquiry</option>
                 <option value="Product complaint">Product complaint</option>
             </select>
         </div>
+
+        <fieldset id="productDetails">
+            <legend>Product Details</legend>
+            <div>
+                <label for="productname">Product name</label>
+                <input type="text" name="productname" id="productname" value="" placeholder="Maxia 3000" />
+            </div>
+            <div>
+                <label for="productsize">Product size</label>
+                <input type="text" name="productsize" id="productsize" value="" placeholder="XXL" />
+            </div>
+            <div>
+                <label for="usebydate">Use-by date</label>
+                <input type="date" name="usebydate" id="usebydate" value="" />
+            </div>
+            <div>
+                <label for="batchcode">Batch code</label>
+                <input type="text" name="batchcode" id="batchcode" value="" />
+            </div>
+        </fieldset>
+
+
         <div>
             <label for="enquiry">Enquiry</label>
             <textarea id="enquiry" name="enquiry"></textarea>
         </div>
 
-    </fieldset>
-    <fieldset id="productDetails">
-        <legend>Product Details</legend>
-        <div>
-            <label for="productname">Product name</label>
-            <input type="text" name="productname" id="productname" value="" placeholder="Maxia 3000" />
-        </div>
-        <div>
-            <label for="productsize">Product size</label>
-            <input type="text" name="productsize" id="productsize" value="" placeholder="XXL" />
-        </div>
-        <div>
-            <label for="usebydate">Use-by date</label>
-            <input type="date" name="usebydate" id="usebydate" value="" />
-        </div>
-        <div>
-            <label for="batchcode">Batch code</label>
-            <input type="text" name="batchcode" id="batchcode" value="" />
-        </div>
     </fieldset>
     <div>
         <input type="submit" name="submit" value="Submit" />
@@ -135,7 +138,7 @@
         var monkeyForm = document.getElementsByTagName('FORM')[0],
             enquiryType = document.getElementById('enquiryType'),
             productDetails = document.getElementById('productDetails'),
-            productFields = ['productname','productsize','usebydate','batchcode'],
+            productFields = productDetails.getElementsByTagName('INPUT'),
             productFieldsRequiredValue = 'Product complaint';
 
 
@@ -165,20 +168,12 @@
             // product name, product size, use-by date and batch code are not empty.
 
             // we already set the field status to required, so fields should
-            // be required by the browser. but just in case the browser
-            // does not support the html5 required attribute
+            // be required aria-required="true" by the browser. but just in case the browser
+            // does not support the html5 required aria-required="true" attribute
 
             if (enquiryType.value == productFieldsRequiredValue) {
-                var allFieldsAreGood = true;
-                for(var i=0, j=productFields.length; i < j; i++) {
-                    var input = document.getElementById(productFields[i]);
-                    if (input.value.length == 0) {
-                        allFieldsAreGood = false;
-                        // TODO: add error message to field
-                        console.error('error on field '+productFields[i]);
-                    }
-                }
-                if (allFieldsAreGood) {
+
+                if (validateAllProductFields()) {
                     console.info('yeah, ok, youre good');
                 } else {
                     event.preventDefault();
@@ -188,16 +183,26 @@
                 console.info('submitting without product complaint');
             }
 
-            // just keep stopping while we are testing ok?
-            event.preventDefault();
-
-
         });
+
+
+
+        function validateAllProductFields() {
+            var allFieldsAreGood = true;
+            for(var i=0, j=productFields.length; i < j; i++) {
+                if (productFields[i].value.length == 0) {
+                    allFieldsAreGood = false;
+                    // TODO: add error message to field
+                    console.error('error on field '+productFields[i]);
+                }
+            }
+            return allFieldsAreGood;
+        }
 
 
         function setProductFieldsRequirement(requireStatus) {
             for(var i=0, j=productFields.length; i < j; i++) {
-                document.getElementById(productFields[i]).required = requireStatus;
+                productFields[i].required = requireStatus;
             }
         }
 
