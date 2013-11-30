@@ -3,99 +3,115 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Monkeytest</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="utf-8">
+<!--     <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <title>Monkeytest</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/main.css">
-        <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
+    <link rel="stylesheet" href="css/normalize.css">
+    <style>
 
-<h1>Monkeyform</h1>
+        body {
+            padding: 2em;
+        }
+        form>div, fieldset>div {
+            margin: 0.5em 0;
+        }
+        label { display: block; min-width: 20em; }
+
+    </style>
+</head>
+<body>
+<!--[if lt IE 7]>
+    <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<h1>Monkeytest</h1>
 
 <form action="index.html" method="GET">
-<div>
-    <label for="firstname">First name <sup>*</sup></label>
-    <input type="text" name="firstname" id="firstname" value="" required placeholder="John" />
-</div>
-<div>
-    <label for="surname">Surname *</label>
-    <input type="text" name="surname" id="surname" value="" required placeholder="Smith" />
-</div>
-<div>
-    <label for="email">Email address *</label>
-    <input type="email" name="email" id="email" value="" required placeholder="johnsmith@nsa.gov.us" />
-</div>
-<div>
-    <label for="phone">Daytime contact number *</label>
-    <input type="tel" name="phone" id="phone" value="" required placeholder="(02) 3456 7890" />
-</div>
-<div>
-    <label for="address">Address *</label>
-    <input type="text" name="address" id="address" value="" required placeholder="66 Acacia Avenue" />
-</div>
-<div>
-    <label for="suburb">Suburb *</label>
-    <input type="text" name="suburb" id="suburb" value="" required placeholder="Suburbabad" />
-</div>
-<div>
-    <label for="state">State *</label>
-    <select id="state" name="state" required>
-        <option value="">choose</option>
-        <option value="ACT">ACT</option>
-        <option value="NSW">NSW</option>
-        <option value="NT">NT</option>
-        <option value="QLD">QLD</option>
-        <option value="SA">SA</option>
-        <option value="TAS">TAS</option>
-        <option value="VIC">VIC</option>
-        <option value="WA">WA</option>
-    </select>
-</div>
-<div>
-    <label for="postcode">Postcode *</label>
-    <input type="text" required name="postcode" id="postcode" pattern="\d{4}" />
-</div>
-<div>
-    <label for="enquirytype">Enquiry type *</label>
-    <select name="enquirytype" id="enquirytype" required>
-        <option value="">choose</option>
-        <option value="General enquiry">General enquiry</option>
-        <option value="Product feedback or enquiry">Product feedback or enquiry</option>
-        <option value="Product complaint">Product complaint</option>
-    </select>
-</div>
-<div>
-    <label for="productname">Product name</label>
-    <input type="text" name="productname" id="productname" value="" placeholder="Maxia 3000" />
-</div>
-<div>
-    <label for="productsize">Product size</label>
-    <input type="text" name="productsize" id="productsize" value="" placeholder="XXL" />
-</div>
-<div>
-    <label for="usebydate">Use-by date</label>
-    <input type="date" name="usebydate" id="usebydate" value="" />
-</div>
-<div>
-    <label for="batchcode">Batch code</label>
-    <input type="text" name="batchcode" id="batchcode" value="" />
-</div>
-<div>
-    <label for="enquiry">Enquiry</label>
-    <textarea id="enquiry" name="enquiry"></textarea>
-</div>
-<div>
-    <input type="submit" name="submit" value="Submit" />
-</div>
+    <fieldset>
+        <legend>Your Details</legend>
+        <div>
+            <label for="firstname">First name *</label>
+            <input type="text" name="firstname" id="firstname" value="" required placeholder="John" />
+        </div>
+        <div>
+            <label for="surname">Surname *</label>
+            <input type="text" name="surname" id="surname" value="" required placeholder="Smith" />
+        </div>
+        <div>
+            <label for="email">Email address *</label>
+            <input type="email" name="email" id="email" value="" required placeholder="johnsmith@nsa.gov.us" />
+        </div>
+        <div>
+            <label for="phone">Daytime contact number *</label>
+            <input type="tel" name="phone" id="phone" value="" required placeholder="(02) 3456 7890" />
+        </div>
+        <div>
+            <label for="address">Address *</label>
+            <input type="text" name="address" id="address" value="" required placeholder="66 Acacia Avenue" />
+        </div>
+        <div>
+            <label for="suburb">Suburb *</label>
+            <input type="text" name="suburb" id="suburb" value="" required placeholder="Suburbabad" />
+        </div>
+        <div>
+            <label for="state">State *</label>
+            <select id="state" name="state" required>
+                <option value="">choose</option>
+                <option value="ACT">ACT</option>
+                <option value="NSW">NSW</option>
+                <option value="NT">NT</option>
+                <option value="QLD">QLD</option>
+                <option value="SA">SA</option>
+                <option value="TAS">TAS</option>
+                <option value="VIC">VIC</option>
+                <option value="WA">WA</option>
+            </select>
+        </div>
+        <div>
+            <label for="postcode">Postcode *</label>
+            <input type="text" required name="postcode" id="postcode" pattern="\d{4}" />
+        </div>
+        <div>
+            <label for="enquiryType">Enquiry type *</label>
+            <select name="enquiryType" id="enquiryType" required>
+                <option value="">choose</option>
+                <option value="General enquiry">General enquiry</option>
+                <option value="Product feedback or enquiry">Product feedback or enquiry</option>
+                <option value="Product complaint">Product complaint</option>
+            </select>
+        </div>
+        <div>
+            <label for="enquiry">Enquiry</label>
+            <textarea id="enquiry" name="enquiry"></textarea>
+        </div>
+
+    </fieldset>
+    <fieldset id="productDetails">
+        <legend>Product Details</legend>
+        <div>
+            <label for="productname">Product name</label>
+            <input type="text" name="productname" id="productname" value="" placeholder="Maxia 3000" />
+        </div>
+        <div>
+            <label for="productsize">Product size</label>
+            <input type="text" name="productsize" id="productsize" value="" placeholder="XXL" />
+        </div>
+        <div>
+            <label for="usebydate">Use-by date</label>
+            <input type="date" name="usebydate" id="usebydate" value="" />
+        </div>
+        <div>
+            <label for="batchcode">Batch code</label>
+            <input type="text" name="batchcode" id="batchcode" value="" />
+        </div>
+    </fieldset>
+    <div>
+        <input type="submit" name="submit" value="Submit" />
+    </div>
 </form>
 
 
@@ -116,11 +132,97 @@
 
         "use strict";
 
+        var monkeyForm = document.getElementsByTagName('FORM')[0],
+            enquiryType = document.getElementById('enquiryType'),
+            productDetails = document.getElementById('productDetails'),
+            productFields = ['productname','productsize','usebydate','batchcode'],
+            productFieldsRequiredValue = 'Product complaint';
 
 
+        // initially hide product details section
+
+        productDetails.style.display = 'none';
+
+
+        // watch the enquiry type, to show or hide the product details
+
+        enquiryType.addEventListener('change', function(event){
+            if (this.value == productFieldsRequiredValue) {
+                setProductFieldsRequirement(true);
+                productDetails.style.display = 'block';
+            } else {
+                setProductFieldsRequirement(false);
+                productDetails.style.display = 'none';
+            }
+        });
+
+
+        // the validation routine
+
+        monkeyForm.addEventListener('submit', function(event){
+
+            // if the enquiry type is "Product Complaint", ensure that
+            // product name, product size, use-by date and batch code are not empty.
+
+            // we already set the field status to required, so fields should
+            // be required by the browser. but just in case the browser
+            // does not support the html5 required attribute
+
+            if (enquiryType.value == productFieldsRequiredValue) {
+                var allFieldsAreGood = true;
+                for(var i=0, j=productFields.length; i < j; i++) {
+                    var input = document.getElementById(productFields[i]);
+                    if (input.value.length == 0) {
+                        allFieldsAreGood = false;
+                        // TODO: add error message to field
+                        console.error('error on field '+productFields[i]);
+                    }
+                }
+                if (allFieldsAreGood) {
+                    console.info('yeah, ok, youre good');
+                } else {
+                    event.preventDefault();
+                }
+
+            } else {
+                console.info('submitting without product complaint');
+            }
+
+            // just keep stopping while we are testing ok?
+            event.preventDefault();
+
+
+        });
+
+
+        function setProductFieldsRequirement(requireStatus) {
+            for(var i=0, j=productFields.length; i < j; i++) {
+                document.getElementById(productFields[i]).required = requireStatus;
+            }
+        }
 
 
     })();
+
+
+
+
+
+    // auto-fill some fields if we are testing
+
+    var testing = true;
+
+    if (testing) {
+        document.getElementById('firstname').value = 'John';
+        document.getElementById('surname').value = 'Smith';
+        document.getElementById('email').value = 'johnsmith@nsa.gov.au';
+        document.getElementById('phone').value = '(02) 3434 5656';
+        document.getElementById('address').value = '99 Nonce View';
+        document.getElementById('suburb').value = 'Earlswood';
+        document.getElementById('state').value = 'NSW';
+        document.getElementById('postcode').value = '4321';
+    }
+
 
 
 </script>
