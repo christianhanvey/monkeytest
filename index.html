@@ -21,6 +21,9 @@
         }
         label { display: block; min-width: 20em; }
 
+        .hide { display: none; }
+        #success { border: 2px solid green; padding: 0.5em; }
+
     </style>
 </head>
 <body>
@@ -126,8 +129,6 @@
 
 
 
-
-
 <script>
 
 
@@ -144,7 +145,10 @@
 
         // initially hide product details section
 
-        productDetails.style.display = 'none';
+        productDetails.className = productDetails.className + " hide";
+
+        // check if the form was submitted and we have details in the querystring
+        checkFormReceivedSuccessfully();
 
 
         // watch the enquiry type, to show or hide the product details
@@ -152,10 +156,10 @@
         enquiryType.addEventListener('change', function(event){
             if (this.value == productFieldsRequiredValue) {
                 setProductFieldsRequirement(true);
-                productDetails.style.display = 'block';
+                productDetails.className = productDetails.className.replace(/hide/g, '');
             } else {
                 setProductFieldsRequirement(false);
-                productDetails.style.display = 'none';
+                productDetails.className = productDetails.className + " hide";
             }
         });
 
@@ -213,11 +217,26 @@
 
 
 
-    // auto-fill some fields if we are testing
+        // test the querystring, if it exists, then the form has been submitted
+        function checkFormReceivedSuccessfully() {
+            var qstring = window.location.search;
+            console.log(qstring);
+             if (qstring.length > 0) {
+                var node = document.createElement('p');
+                node.id = 'success';
+                node.textContent = 'Form submitted successfully';
+                document.querySelector('body').appendChild(node);
+             }
+        }
+
+
+
+
+    // auto-fill some fields if we are testing for convenience
 
     var testing = true;
 
-    if (testing) {
+    if (testing && document.getElementById('firstname').value.length == 0) {
         document.getElementById('firstname').value = 'John';
         document.getElementById('surname').value = 'Smith';
         document.getElementById('email').value = 'johnsmith@nsa.gov.au';
@@ -231,6 +250,11 @@
 
 
 </script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
